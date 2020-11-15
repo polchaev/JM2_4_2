@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link rel="stylesheet" type="text/html"/>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        <h1>Таблица пользователей</h1>
+        <tr th:each="user : ${userList}">
+            <td th:utext="${user.getId()}"></td>
+            <td>
+                <a th:href="@{/admin/users/{userId}/edit(userId=${user.id})}" th:utext="${user.getLogin()}"></a>
+            </td>
+            <td th:text="${user.getFirstname()}"></td>
+            <td th:text="${user.getLastname()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.roles}"></td>
+            <td><a th:href="@{/admin/users/{userId}/edit(userId=${user.id})}">Edit</a> <a
+                    th:href="@{/admin/users/{userId}/delete(userId=${user.id})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+
+<h3>
+    <a th:href="@{/admin/users/add}">Create user</a>
+</h3>
+<h2><a th:href="@{/logout}"> Logout </a></h2>
+</body>
+</html>

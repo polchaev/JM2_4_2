@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Create a User'"></title>
+    <link rel="stylesheet" type="text/html"/>
+</head>
+<body>
+<h1 th:text="'Create a User'"></h1>
+<a th:href="@{/admin/users}">Back to User List</a>
+<br/><br/>
+<form th:action="@{/admin/users/add}"
+      th:object="${user}" method="POST">
+    <table>
+        <tr>
+            <td>Login</td>
+            <td>:</td>
+            <td><label>
+                <input type="text" name="login" th:field="*{login}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>:</td>
+            <td><label>
+                <input type="password" name="password" th:field="*{password}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><label>
+                <input type="text" name="name" th:field="*{firstname}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>:</td>
+            <td><label>
+                <input type="text" name="lastname" th:field="*{lastname}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><label>
+                <input type="text" name="email" th:field="*{email}"/>
+            </label></td>
+        </tr>
+    </table>
+    <tr>
+        <td>
+            <label>User Role</label>
+        </td>
+        <td>
+            <label>
+                <select multiple size="10" th:name="roles">
+                    <div th:each="role : ${roles}">
+                        <option th:value="${role.getId()}" th:selected="${role.id==1}"
+                                th:text="${role.getRole()}"></option>
+                    </div>
+                </select>
+            </label>
+        </td>
+    </tr>
+    <label>
+        <input th:type="submit" th:value="Create"/>
+    </label>
+</form>
+<h2><a th:href="@{/logout}"> Logout </a></h2>
+</body>
+</html>
