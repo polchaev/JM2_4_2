@@ -70,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // защищенные URL
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')").anyRequest().authenticated();
     }
+    // hasRole
 
     @Bean
     public static PasswordEncoder passwordEncoder() {

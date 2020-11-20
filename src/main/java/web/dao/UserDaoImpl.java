@@ -52,12 +52,14 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public User getUserByName(String login) {
-        return entityManager.createQuery("from User where login = '" + login + "'", User.class).getSingleResult();//.find(User.class, login);
+        return entityManager.createQuery("from User where login = :login", User.class).setParameter("login", login).getSingleResult();//.find(User.class, login);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Role getRoleByName(String role) {
-        return (Role) entityManager.createQuery("from Role where role = '" + role + "'", Role.class).getSingleResult();
+        return (Role) entityManager.createQuery("from Role where role = :role", Role.class).setParameter("role", role).getSingleResult();///
     }
 }
